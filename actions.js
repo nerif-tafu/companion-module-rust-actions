@@ -704,20 +704,30 @@ module.exports = function (self) {
 				},
 				{
 					id: 'quantity',
-					type: 'number',
-					label: 'Quantity',
-					default: 1,
-					min: 1,
-					max: 1000,
+					type: 'textinput',
+					label: 'Quantity (supports variables)',
+					default: '1',
+					required: true,
+					useVariables: true,
 				},
 			],
 			callback: async (event) => {
 				try {
+					// Resolve variables first
+					const resolvedQuantity = await self.parseVariablesInString(event.options.quantity)
+					self.log('debug', `Resolved quantity: ${resolvedQuantity}`)
+
+					const quantity = parseInt(resolvedQuantity, 10)
+					if (isNaN(quantity) || quantity < 1) {
+						self.log('error', `Invalid quantity: ${resolvedQuantity}. Must be a positive number.`)
+						return
+					}
+
 					const response = await self.apiRequest('POST', '/craft/id', {
 						item_id: event.options.item_id,
-						quantity: event.options.quantity,
+						quantity: quantity,
 					})
-					self.log('info', `Crafted ${event.options.quantity}x ${event.options.item_id}`)
+					self.log('info', `Crafted ${quantity}x ${event.options.item_id}`)
 				} catch (error) {
 					self.log('error', `Failed to craft item: ${error.message}`)
 				}
@@ -737,20 +747,30 @@ module.exports = function (self) {
 				},
 				{
 					id: 'quantity',
-					type: 'number',
-					label: 'Quantity',
-					default: 1,
-					min: 1,
-					max: 1000,
+					type: 'textinput',
+					label: 'Quantity (supports variables)',
+					default: '1',
+					required: true,
+					useVariables: true,
 				},
 			],
 			callback: async (event) => {
 				try {
-					const response = await self.apiRequest('POST', `/craft/cancel/id`, {
+					// Resolve variables first
+					const resolvedQuantity = await self.parseVariablesInString(event.options.quantity)
+					self.log('debug', `Resolved quantity: ${resolvedQuantity}`)
+
+					const quantity = parseInt(resolvedQuantity, 10)
+					if (isNaN(quantity) || quantity < 1) {
+						self.log('error', `Invalid quantity: ${resolvedQuantity}. Must be a positive number.`)
+						return
+					}
+
+					const response = await self.apiRequest('POST', '/craft/cancel/id', {
 						item_id: event.options.item_id,
-						quantity: event.options.quantity,
+						quantity: quantity,
 					})
-					self.log('info', `Cancelled craft for ${event.options.quantity}x ${event.options.item_id}`)
+					self.log('info', `Cancelled craft for ${quantity}x ${event.options.item_id}`)
 				} catch (error) {
 					self.log('error', `Failed to cancel craft: ${error.message}`)
 				}
