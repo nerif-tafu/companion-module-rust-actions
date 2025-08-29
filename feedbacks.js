@@ -83,6 +83,20 @@ module.exports = async function (self) {
 				return self.hudStatus
 			},
 		},
+
+		noclip_status: {
+			name: 'Noclip Status',
+			type: 'boolean',
+			label: 'Noclip Status',
+			defaultStyle: {
+				bgcolor: combineRgb(0, 255, 0),
+				color: combineRgb(0, 0, 0),
+			},
+			options: [],
+			callback: (feedback) => {
+				return self.noclipStatus
+			},
+		},
 		auto_message_status: {
 			name: 'Auto Message Status',
 			type: 'boolean',

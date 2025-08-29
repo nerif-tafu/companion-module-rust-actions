@@ -329,6 +329,41 @@ module.exports = function (self) {
 		feedbacks: [],
 	}
 
+	presets[`noclip_toggle`] = {
+		type: 'button',
+		category: 'Player Actions',
+		name: 'Noclip Toggle',
+		style: {
+			text: '👻\nNoclip',
+			size: 'auto',
+			color: combineRgb(255, 255, 255),
+			bgcolor: combineRgb(255, 0, 0),
+		},
+		steps: [
+			{
+				down: [
+					{
+						actionId: '[admin]_noclip',
+						options: {
+							enable: 'toggle',
+						},
+					},
+				],
+				up: [],
+			},
+		],
+		feedbacks: [
+			{
+				feedbackId: 'noclip_status',
+				options: {},
+				style: {
+					bgcolor: combineRgb(0, 255, 0),
+					color: combineRgb(0, 0, 0),
+				},
+			},
+		],
+	}
+
 	// Utility
 	presets[`clear_console`] = {
 		type: 'button',

@@ -5,6 +5,7 @@ module.exports = function (self) {
 		{ variableId: 'api_connected', name: 'API Connected' },
 		{ variableId: 'god_mode_status', name: 'God Mode Status' },
 		{ variableId: 'hud_status', name: 'HUD Status' },
+		{ variableId: 'noclip_status', name: 'Noclip Status' },
 		{ variableId: 'auto_message_status', name: 'Auto Message Status' },
 		{ variableId: 'auto_message_states', name: 'Auto Message States (JSON)' },
 		{ variableId: 'delayed_message_states', name: 'Delayed Message States (JSON)' },

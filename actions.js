@@ -611,11 +611,36 @@ module.exports = function (self) {
 		// [ADMIN] Actions
 		'[admin]_noclip': {
 			name: '[ADMIN] Noclip Toggle',
-			options: [],
+			options: [
+				{
+					id: 'enable',
+					type: 'dropdown',
+					label: 'Noclip State',
+					default: 'toggle',
+					choices: [
+						{ id: 'toggle', label: 'Toggle' },
+						{ id: 'true', label: 'Enable' },
+						{ id: 'false', label: 'Disable' },
+					],
+				},
+			],
 			callback: async (event) => {
 				try {
-					const response = await self.apiRequest('POST', '/player/noclip')
-					self.log('info', 'Noclip toggled')
+					let enable = event.options.enable
+					if (enable === 'toggle') {
+						// Toggle the current state
+						enable = !self.noclipStatus
+					}
+					
+					const response = await self.apiRequest('POST', '/player/noclip', {
+						enable: enable === 'true' || enable === true
+					})
+					
+					// Update the status based on the response
+					self.noclipStatus = enable === 'true' || enable === true
+					self.updateStatusVariables()
+					
+					self.log('info', `Noclip ${self.noclipStatus ? 'enabled' : 'disabled'}`)
 				} catch (error) {
 					self.log('error', `Failed to toggle noclip: ${error.message}`)
 				}

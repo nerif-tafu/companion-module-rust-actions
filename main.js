@@ -14,6 +14,7 @@ class ModuleInstance extends InstanceBase {
 		this.apiConnected = false
 		this.godModeStatus = false
 		this.hudStatus = false
+		this.noclipStatus = false
 		this.autoMessageStatus = false
 		this.autoMessageInterval = null
 		this.autoMessageInstances = new Map()
@@ -149,6 +150,7 @@ class ModuleInstance extends InstanceBase {
 			api_connected: this.apiConnected ? 'Connected' : 'Disconnected',
 			god_mode_status: this.godModeStatus ? 'Enabled' : 'Disabled',
 			hud_status: this.hudStatus ? 'Enabled' : 'Disabled',
+			noclip_status: this.noclipStatus ? 'Enabled' : 'Disabled',
 			auto_message_status: this.autoMessageStatus ? 'Running' : 'Stopped',
 			auto_message_states: JSON.stringify(autoMessageStatus),
 		}
