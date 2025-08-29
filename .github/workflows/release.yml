@@ -1,0 +1,72 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'yarn'
+        
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: Build craftable items
+      run: yarn build
+        
+    - name: Package module
+      run: yarn package
+      
+    - name: Create Release
+      run: |
+        # Get the version from the tag
+        VERSION=${GITHUB_REF#refs/tags/}
+        
+        # Create release notes
+        cat > release-notes.md << EOF
+        # Release $VERSION
+        
+        ## Companion Module: Rust Actions
+        
+        This release includes the complete Companion module for Rust Actions with:
+        
+        - All API endpoints as actions
+        - Static craftable items dropdown (built during release)
+        - Presets for common actions
+        - Status feedbacks and variables
+        
+        ## Installation
+        
+        1. Download the \`.tgz\` file
+        2. Install in your Companion instance
+        3. Configure the API host and port
+        4. Start using the actions!
+        
+        ## Build Info
+        
+        - Generated on: $(date -u)
+        - Craftable items: $(grep -o '"id":' craftable-items.js | wc -l) items
+        - Module version: $VERSION
+        EOF
+        
+        # Create the release
+        gh release create $VERSION \
+          --title "Release $VERSION" \
+          --notes-file release-notes.md \
+          pkg/*.tgz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

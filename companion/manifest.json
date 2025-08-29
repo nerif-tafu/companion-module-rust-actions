@@ -1,16 +1,16 @@
 {
-	"id": "your-module-name",
-	"name": "your-module-name",
-	"shortname": "module-shortname",
-	"description": "A short one line description of your module",
-	"version": "0.0.0",
+	"id": "rust-actions",
+	"name": "Rust Actions",
+	"shortname": "rust-actions",
+	"description": "Control Rust game actions via REST API",
+	"version": "1.0.0",
 	"license": "MIT",
-	"repository": "git+https://github.com/bitfocus/companion-module-your-module-name.git",
-	"bugs": "https://github.com/bitfocus/companion-module-your-module-name/issues",
+	"repository": "git+https://github.com/nerif-tafu/companion-module-rust-actions.git",
+	"bugs": "https://github.com/nerif-tafu/companion-module-rust-actions/issues",
 	"maintainers": [
 		{
-			"name": "Your name",
-			"email": "Your email"
+			"name": "nerif-tafu",
+			"email": "your-email@example.com"
 		}
 	],
 	"runtime": {
@@ -20,7 +20,7 @@
 		"entrypoint": "../main.js"
 	},
 	"legacyIds": [],
-	"manufacturer": "Your company",
-	"products": ["Your product"],
-	"keywords": []
+	"manufacturer": "nerif-tafu",
+	"products": ["Rust Actions API"],
+	"keywords": ["rust", "game", "api", "automation"]
 }
