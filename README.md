@@ -9,8 +9,9 @@ This module connects to your Rust Actions API and gives you button control over:
 - **Player controls** - Suicide, respawn, god mode, noclip, gestures
 - **Chat** - Send messages, auto-message, delayed messages
 - **Game controls** - Quit, connect/disconnect, time control
-- **Inventory** - Stack items, toggle stacking
+- **Inventory** - Stack items, toggle stacking, give items
 - **Settings** - Volume, HUD, look radius
+- **Admin** - Give items, kill entities, teleport, time control
 
 ## Quick Start
 
@@ -48,7 +49,7 @@ This will trigger the GitHub Actions workflow to create a release with the `.tgz
 - **Smart toggles** - Visual feedback for all toggle states
 - **Delayed messages** - Send messages with countdown timers
 - **Auto messages** - Repeating messages with independent controls
-- **50+ presets** - Ready-to-use buttons for common actions
+- **60+ presets** - Ready-to-use buttons for common actions
 - **Real-time status** - See connection and operation status
 
 ## Configuration

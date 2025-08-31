@@ -690,6 +690,302 @@ module.exports = function (self) {
 			},
 		},
 
+		'[admin]_give_items': {
+			name: '[ADMIN] Give Items (JSON)',
+			options: [
+				{
+					id: 'items_json',
+					type: 'textinput',
+					label: 'Items JSON (e.g., [{"item_name": "wood", "quantity": 1000}])',
+					default: '[{"item_name": "wood", "quantity": 1000}]',
+					required: true,
+				},
+			],
+			callback: async (event) => {
+				try {
+					let items
+					try {
+						items = JSON.parse(event.options.items_json)
+					} catch (parseError) {
+						self.log('error', `Invalid JSON format: ${parseError.message}`)
+						return
+					}
+					
+					const response = await self.apiRequest('POST', '/inventory/give', {
+						items: items,
+					})
+					self.log('info', `Gave items: ${JSON.stringify(items)}`)
+				} catch (error) {
+					self.log('error', `Failed to give items: ${error.message}`)
+				}
+			},
+		},
+
+		'[admin]_give_item': {
+			name: '[ADMIN] Give Item (Single)',
+			options: [
+				{
+					id: 'item_id',
+					type: 'dropdown',
+					label: 'Item',
+					default: '',
+					required: true,
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity',
+					type: 'textinput',
+					label: 'Quantity (supports variables)',
+					default: '1000',
+					required: true,
+					useVariables: true,
+				},
+			],
+			callback: async (event) => {
+				try {
+					const itemId = event.options.item_id
+					const quantityStr = await self.parseVariablesInString(event.options.quantity)
+					const quantity = parseInt(quantityStr, 10)
+					
+					if (isNaN(quantity) || quantity <= 0) {
+						self.log('error', `Invalid quantity: ${quantityStr}`)
+						return
+					}
+					
+					// Find the item shortname from the dropdown choice
+					const itemChoices = require('./craftable-items.js')
+					const selectedItem = itemChoices.find(item => item.id === itemId)
+					
+					if (!selectedItem) {
+						self.log('error', `Item not found: ${itemId}`)
+						return
+					}
+					
+					const response = await self.apiRequest('POST', '/inventory/give', {
+						items: [{
+							item_name: selectedItem.shortname,
+							quantity: quantity
+						}]
+					})
+					self.log('info', `Gave ${quantity} ${selectedItem.label}`)
+				} catch (error) {
+					self.log('error', `Failed to give item: ${error.message}`)
+				}
+			},
+		},
+
+		'[admin]_give_items_multi': {
+			name: '[ADMIN] Give Items (Multi)',
+			options: [
+				{
+					id: 'item_1',
+					type: 'dropdown',
+					label: 'Item 1',
+					default: '',
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity_1',
+					type: 'textinput',
+					label: 'Quantity 1 (supports variables)',
+					default: '1000',
+					useVariables: true,
+				},
+				{
+					id: 'item_2',
+					type: 'dropdown',
+					label: 'Item 2',
+					default: '',
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity_2',
+					type: 'textinput',
+					label: 'Quantity 2 (supports variables)',
+					default: '1000',
+					useVariables: true,
+				},
+				{
+					id: 'item_3',
+					type: 'dropdown',
+					label: 'Item 3',
+					default: '',
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity_3',
+					type: 'textinput',
+					label: 'Quantity 3 (supports variables)',
+					default: '1000',
+					useVariables: true,
+				},
+				{
+					id: 'item_4',
+					type: 'dropdown',
+					label: 'Item 4',
+					default: '',
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity_4',
+					type: 'textinput',
+					label: 'Quantity 4 (supports variables)',
+					default: '1000',
+					useVariables: true,
+				},
+				{
+					id: 'item_5',
+					type: 'dropdown',
+					label: 'Item 5',
+					default: '',
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity_5',
+					type: 'textinput',
+					label: 'Quantity 5 (supports variables)',
+					default: '1000',
+					useVariables: true,
+				},
+				{
+					id: 'item_6',
+					type: 'dropdown',
+					label: 'Item 6',
+					default: '',
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity_6',
+					type: 'textinput',
+					label: 'Quantity 6 (supports variables)',
+					default: '1000',
+					useVariables: true,
+				},
+				{
+					id: 'item_7',
+					type: 'dropdown',
+					label: 'Item 7',
+					default: '',
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity_7',
+					type: 'textinput',
+					label: 'Quantity 7 (supports variables)',
+					default: '1000',
+					useVariables: true,
+				},
+				{
+					id: 'item_8',
+					type: 'dropdown',
+					label: 'Item 8',
+					default: '',
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity_8',
+					type: 'textinput',
+					label: 'Quantity 8 (supports variables)',
+					default: '1000',
+					useVariables: true,
+				},
+				{
+					id: 'item_9',
+					type: 'dropdown',
+					label: 'Item 9',
+					default: '',
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity_9',
+					type: 'textinput',
+					label: 'Quantity 9 (supports variables)',
+					default: '1000',
+					useVariables: true,
+				},
+				{
+					id: 'item_10',
+					type: 'dropdown',
+					label: 'Item 10',
+					default: '',
+					choices: require('./craftable-items.js'),
+				},
+				{
+					id: 'quantity_10',
+					type: 'textinput',
+					label: 'Quantity 10 (supports variables)',
+					default: '1000',
+					useVariables: true,
+				},
+			],
+			callback: async (event) => {
+				try {
+					const items = []
+					const itemChoices = require('./craftable-items.js')
+					
+					// Process each item-quantity pair
+					for (let i = 1; i <= 10; i++) {
+						const itemId = event.options[`item_${i}`]
+						const quantityStr = event.options[`quantity_${i}`]
+						
+						// Skip if no item selected
+						if (!itemId || itemId === '') {
+							continue
+						}
+						
+						// Parse quantity with variable support
+						const parsedQuantityStr = await self.parseVariablesInString(quantityStr)
+						const quantity = parseInt(parsedQuantityStr, 10)
+						
+						if (isNaN(quantity) || quantity <= 0) {
+							self.log('error', `Invalid quantity for item ${i}: ${parsedQuantityStr}`)
+							continue
+						}
+						
+						// Find the item shortname from the dropdown choice
+						const selectedItem = itemChoices.find(item => item.id === itemId)
+						
+						if (!selectedItem) {
+							self.log('error', `Item not found for slot ${i}: ${itemId}`)
+							continue
+						}
+						
+						items.push({
+							item_name: selectedItem.shortname,
+							quantity: quantity
+						})
+					}
+					
+					if (items.length === 0) {
+						self.log('error', 'No valid items to give')
+						return
+					}
+					
+					const response = await self.apiRequest('POST', '/inventory/give', {
+						items: items
+					})
+					
+					const itemList = items.map(item => `${item.quantity}x ${item.item_name}`).join(', ')
+					self.log('info', `Gave items: ${itemList}`)
+				} catch (error) {
+					self.log('error', `Failed to give items: ${error.message}`)
+				}
+			},
+		},
+
+		'[admin]_kill_entity': {
+			name: '[ADMIN] Kill Entity',
+			options: [],
+			callback: async (event) => {
+				try {
+					const response = await self.apiRequest('POST', '/player/ent-kill')
+					self.log('info', 'Killed entity at crosshair')
+				} catch (error) {
+					self.log('error', `Failed to kill entity: ${error.message}`)
+				}
+			},
+		},
+
 		// [CRAFT] Actions
 		'[craft]_item': {
 			name: '[CRAFT] Item',

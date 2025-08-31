@@ -50,11 +50,12 @@ function generateChoicesFile(namedItems) {
 	// Create choices array for dropdowns
 	const choices = namedItems.map(item => ({
 		id: item.itemid,
-		label: item.Name || item.shortname
+		label: item.Name || item.shortname,
+		shortname: item.shortname
 	}))
 	
 	// Add a default "Select item" option
-	choices.unshift({ id: '', label: 'Select item...' })
+	choices.unshift({ id: '', label: 'Select item...', shortname: '' })
 	
 	// Generate the JavaScript file content
 	const fileContent = `// Auto-generated file - do not edit manually

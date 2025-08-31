@@ -689,6 +689,132 @@ module.exports = function (self) {
 		}
 	}
 
+	// Admin - Give Items JSON Preset
+	presets[`give_items_json`] = {
+		type: 'button',
+		category: 'Admin',
+		name: 'Give Items (JSON)',
+		style: {
+			text: `🎁\nGive Items\n(JSON)`,
+			size: 'auto',
+			color: combineRgb(255, 255, 255),
+			bgcolor: combineRgb(255, 165, 0), // Orange
+		},
+		steps: [
+			{
+				down: [
+					{
+						actionId: '[admin]_give_items',
+						options: {
+							items_json: '[{"item_name": "wood", "quantity": 1000}]',
+						},
+					},
+				],
+				up: [],
+			},
+		],
+		feedbacks: [],
+	}
+
+	// Admin - Give Item Single Preset
+	presets[`give_item_single`] = {
+		type: 'button',
+		category: 'Admin',
+		name: 'Give Item (Single)',
+		style: {
+			text: `📦\nGive Item\n(Single)`,
+			size: 'auto',
+			color: combineRgb(255, 255, 255),
+			bgcolor: combineRgb(0, 128, 255), // Blue
+		},
+		steps: [
+			{
+				down: [
+					{
+						actionId: '[admin]_give_item',
+						options: {
+							item_id: '',
+							quantity: '1000',
+						},
+					},
+				],
+				up: [],
+			},
+		],
+		feedbacks: [],
+	}
+
+	// Admin - Give Items Multi Preset
+	presets[`give_items_multi`] = {
+		type: 'button',
+		category: 'Admin',
+		name: 'Give Items (Multi)',
+		style: {
+			text: `📦📦📦\nGive Items\n(Multi)`,
+			size: 'auto',
+			color: combineRgb(255, 255, 255),
+			bgcolor: combineRgb(0, 128, 255), // Blue
+		},
+		steps: [
+			{
+				down: [
+					{
+						actionId: '[admin]_give_items_multi',
+						options: {
+							item_1: '',
+							quantity_1: '1000',
+							item_2: '',
+							quantity_2: '1000',
+							item_3: '',
+							quantity_3: '1000',
+							item_4: '',
+							quantity_4: '1000',
+							item_5: '',
+							quantity_5: '1000',
+							item_6: '',
+							quantity_6: '1000',
+							item_7: '',
+							quantity_7: '1000',
+							item_8: '',
+							quantity_8: '1000',
+							item_9: '',
+							quantity_9: '1000',
+							item_10: '',
+							quantity_10: '1000',
+						},
+					},
+				],
+				up: [],
+			},
+		],
+		feedbacks: [],
+	}
+
+	// Admin - Kill Entity
+	presets[`kill_entity`] = {
+		type: 'button',
+		category: 'Admin',
+		name: 'Kill Entity',
+		style: {
+			text: '💀\nKill Entity',
+			size: 'auto',
+			color: combineRgb(255, 255, 255),
+			bgcolor: combineRgb(255, 0, 0), // Red
+		},
+		steps: [
+			{
+				down: [
+					{
+						actionId: '[admin]_kill_entity',
+						options: {},
+					},
+				],
+				up: [],
+			},
+		],
+		feedbacks: [],
+	}
+
 	// Emotes
 	const emotes = [
 		{ id: 'wave', label: 'Wave', icon: '👋' },
