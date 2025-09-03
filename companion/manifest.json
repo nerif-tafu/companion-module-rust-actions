@@ -3,7 +3,7 @@
 	"name": "Rust Actions",
 	"shortname": "rust-actions",
 	"description": "Control Rust game actions via REST API",
-	"version": "1.4.0",
+	"version": "1.5.0",
 	"license": "MIT",
 	"repository": "git+https://github.com/nerif-tafu/companion-module-rust-actions.git",
 	"bugs": "https://github.com/nerif-tafu/companion-module-rust-actions/issues",
