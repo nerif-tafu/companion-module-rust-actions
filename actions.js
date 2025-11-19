@@ -730,7 +730,7 @@ module.exports = function (self) {
 					label: 'Item',
 					default: '',
 					required: true,
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity',
@@ -753,7 +753,7 @@ module.exports = function (self) {
 					}
 					
 					// Find the item shortname from the dropdown choice
-					const itemChoices = require('./craftable-items.js')
+					const itemChoices = require('./all-items.js')
 					const selectedItem = itemChoices.find(item => item.id === itemId)
 					
 					if (!selectedItem) {
@@ -782,7 +782,7 @@ module.exports = function (self) {
 					type: 'dropdown',
 					label: 'Item 1',
 					default: '',
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity_1',
@@ -796,7 +796,7 @@ module.exports = function (self) {
 					type: 'dropdown',
 					label: 'Item 2',
 					default: '',
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity_2',
@@ -810,7 +810,7 @@ module.exports = function (self) {
 					type: 'dropdown',
 					label: 'Item 3',
 					default: '',
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity_3',
@@ -824,7 +824,7 @@ module.exports = function (self) {
 					type: 'dropdown',
 					label: 'Item 4',
 					default: '',
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity_4',
@@ -838,7 +838,7 @@ module.exports = function (self) {
 					type: 'dropdown',
 					label: 'Item 5',
 					default: '',
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity_5',
@@ -852,7 +852,7 @@ module.exports = function (self) {
 					type: 'dropdown',
 					label: 'Item 6',
 					default: '',
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity_6',
@@ -866,7 +866,7 @@ module.exports = function (self) {
 					type: 'dropdown',
 					label: 'Item 7',
 					default: '',
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity_7',
@@ -880,7 +880,7 @@ module.exports = function (self) {
 					type: 'dropdown',
 					label: 'Item 8',
 					default: '',
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity_8',
@@ -894,7 +894,7 @@ module.exports = function (self) {
 					type: 'dropdown',
 					label: 'Item 9',
 					default: '',
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity_9',
@@ -908,7 +908,7 @@ module.exports = function (self) {
 					type: 'dropdown',
 					label: 'Item 10',
 					default: '',
-					choices: require('./craftable-items.js'),
+					choices: require('./all-items.js'),
 				},
 				{
 					id: 'quantity_10',
@@ -921,7 +921,7 @@ module.exports = function (self) {
 			callback: async (event) => {
 				try {
 					const items = []
-					const itemChoices = require('./craftable-items.js')
+					const itemChoices = require('./all-items.js')
 					
 					// Process each item-quantity pair
 					for (let i = 1; i <= 10; i++) {
